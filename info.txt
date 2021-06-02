@@ -1,0 +1,6 @@
+1 Termy, termy złożone (fakty), YES YES YES
+2 Klauzule (deﬁnicje nowych pojęć),  +
+3 Elementy dynamiczne (dodawanie i usuwanie termów w trakcie działania programu),  +-
+4 Rekurencja, GOOD, but need to show. 
+5 Uniﬁkacja, cięcie,  (В списках??)
+6 Listy (operacje na listach). 
