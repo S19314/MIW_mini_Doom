@@ -4,10 +4,11 @@
 /** 5.  Listy (operacje na listach) */
 :- dynamic inventory/1.
 inventory([]).
-
-
-
-
+% inventory(['Hello world!']).
+show_list([Head|Tail]) :- write(Head), nl, show_list(Tail).
+show_inventory :- inventory(X), show_list(X).
+add_inventory(Y) :- inventory(X), append(X, [Y], Z), retractall(inventory(_)), assert(inventory(Z)), write(Z).
+remove_inventory(Y) :- inventory(X), delete(X, Y, Z), retractall(inventory(_)), assert(inventory(Z)), write(Z).
 
 /** 1.1 Fakty DOWN */
 room(complex_oak,'comlex OAK'). /** Или через dynamic или через list или как второй агрумент добавить информацию о вещах в комнате. */
