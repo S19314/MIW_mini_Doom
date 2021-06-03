@@ -8,6 +8,7 @@ show_healt_state :- healt_state(X), show_list_healt_state(X).
 add_healt_state(Y) :- healt_state(X), append(X, [Y], Z), retractall(healt_state(_)), assert(healt_state(Z)), write(Z).
 add_healt_state(Y) :- healt_state(X), delete(X, [Y], Z), retractall(healt_state(_)), assert(healt_state(Z)), write(Z).
 
+
 /** 5.  Listy (operacje na listach) */
 :- dynamic inventory/1.
 inventory([]).
@@ -72,13 +73,13 @@ road(X,Y) :- transit(X,Z), road(Z,Y).
 
 /** 3.  Elementy dynamiczne  add and remove */
 go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)), write("You are in "), write(Y), write('.').
-
+% Добавить отображение комнаты.
 
 
 
 
 /** 4.  Uniﬁkacja, cięcie */
-title_doom :- write('
+game_title :- write('
 88888888ba,                                                  
 88      \`\"8b                                                 
 88        \`8b                                                
@@ -88,4 +89,9 @@ title_doom :- write('
 88      .a8P   \"8a,   ,a8\"  \"8a,   ,a8\"  88      88      88  
 88888888Y\"\'     \"YbbdP\"\'      \"YbbdP\"\'   88      88      88'), nl, fail.
 
+
+my_help :- 
+	write('For showing game: game_title.
+For showing your current location: whereami(X).\nFor showing nearest rooms: road(location_from, Y).
+For going to nearest_room: go(nearest_room).\nFor showing doomguy inventory: show_inventory.'), fail.
  
