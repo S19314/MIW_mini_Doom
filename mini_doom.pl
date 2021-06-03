@@ -1,5 +1,12 @@
 /** 3.  Elementy dynamiczne  */
 :- dynamic whereami/1.
+% Мб, убрать?
+:- dynamic health_state/1.
+healt_state(['I am alive!']).
+show_list_healt_state([Head|Tail]) :- write(Head), nl, show_list(Tail).
+show_healt_state :- healt_state(X), show_list_healt_state(X).
+add_healt_state(Y) :- healt_state(X), append(X, [Y], Z), retractall(healt_state(_)), assert(healt_state(Z)), write(Z).
+add_healt_state(Y) :- healt_state(X), delete(X, [Y], Z), retractall(healt_state(_)), assert(healt_state(Z)), write(Z).
 
 /** 5.  Listy (operacje na listach) */
 :- dynamic inventory/1.
@@ -18,8 +25,8 @@ room(raspres_center, 'RaspRes Center').
 room(argent_tower, 'Argent Tower').
 room(argent_complex, 'Argent Complex').
 room(vega_technical_department, 'Vega Technical Department').
-/** 1.1 Fakty UP */
 
+/** 1.1 Fakty UP */
 
 /** 1.2. Termy złożone DOWN */
 transit( exit_to_mars, raspres_center).
@@ -36,19 +43,21 @@ transit( argent_tower, argent_complex).
 transit( vega_technical_department, raspres_center).
 transit( vega_technical_department, argent_complex).
 transit( vega_technical_department, argent_tower).
-transit( vega_technical_department, complex_oak).
+transit( vega_technical_department, complex_oak). 
 
 transit( argent_complex, argent_tower).
 transit( argent_complex, complex_oak ).
 transit( argent_complex, vega_technical_department).
 
-transit( complex_oak, raspres_center).
+transit( complex_oak, raspres_center). 
 transit( complex_oak, argent_complex).
 transit( complex_oak, vega_technical_department).
 
 transit( sarcophagus, complex_oak).
 /** 1.2. Termy złożone UP */
-
+/**
+transit( B, A) = transit( argent_tower, vega_technical_department).
+*/ 
 
 whereami(sarcophagus).
 /** 2.  Klauzula DOWN */
