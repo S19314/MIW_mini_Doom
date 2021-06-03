@@ -1,6 +1,14 @@
 /** 3.  Elementy dynamiczne  */
 :- dynamic whereami/1.
 
+/** 5.  Listy (operacje na listach) */
+:- dynamic inventory/1.
+inventory([]).
+
+
+
+
+
 /** 1.1 Fakty DOWN */
 room(complex_oak,'comlex OAK'). /** Или через dynamic или через list или как второй агрумент добавить информацию о вещах в комнате. */
 room(exit_to_mars, 'Exit to the surface of Mars{END_POINT}').
@@ -52,19 +60,14 @@ road(X,Y) :- write('Show possible ways:\t'), transit(X,Y) ; room(X,Y).
 road(X,Y) :- transit(X,Z), road(Z,Y).
 /** 2.  Rekurencja UP */
 
-
 /** 3.  Elementy dynamiczne  add and remove */
-
-/** 4.  Uniﬁkacja, cięcie */
-/** 5.  Listy (operacje na listach) */
-
 go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)), write("You are in "), write(Y), write('.').
 
 
 
 
 
-
+/** 4.  Uniﬁkacja, cięcie */
 title_doom :- write('
 88888888ba,                                                  
 88      \`\"8b                                                 
