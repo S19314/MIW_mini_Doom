@@ -47,7 +47,26 @@ road(X,Y) :- transit(X,Z), road(Z,Y).
 /** 2.  Rekurencja UP */
 
 
- /** 3.  Elementy dynamiczne  add and remove */
+/** 3.  Elementy dynamiczne  add and remove */
 
-  /** 4.  Uniﬁkacja, cięcie */
+/** 4.  Uniﬁkacja, cięcie */
 /** 5.  Listy (operacje na listach) */
+
+go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)).
+
+
+
+
+
+
+title_doom :- write('
+88888888ba,                                                  
+88      \`\"8b                                                 
+88        \`8b                                                
+88         88   ,adPPYba,    ,adPPYba,   88,dPYba,,adPYba,   
+88         88  a8\"     \"8a  a8\"     \"8a  88P\'   \"88\"    \"8a  
+88         8P  8b       d8  8b       d8  88      88      88  
+88      .a8P   \"8a,   ,a8\"  \"8a,   ,a8\"  88      88      88  
+88888888Y\"\'     \"YbbdP\"\'      \"YbbdP\"\'   88      88      88'), nl, fail.
+
+ 
