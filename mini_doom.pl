@@ -13,25 +13,31 @@ room(vega_technical_department, 'Vega Technical Department').
 
 
 /** 1.2. Termy złożone DOWN */
-transit(raspres_center, exit_to_mars).
-transit(raspres_center, complex_oak).
-transit(raspres_center, vega_technical_department).
-transit(raspres_center, argent_tower).
+transit( exit_to_mars, raspres_center).
 
-transit(argent_tower, raspres_center).
-transit(argent_tower, vega_technical_department).
-transit(argent_tower, argent_complex).
+transit( raspres_center, exit_to_mars).
+transit( raspres_center, complex_oak).
+transit( raspres_center, vega_technical_department).
+transit( raspres_center, argent_tower).
 
-transit(vega_technical_department, raspres_center).
-transit(vega_technical_department, argent_complex).
-transit(vega_technical_department, argent_tower).
-transit(vega_technical_department, complex_oak).
+transit( argent_tower, raspres_center).
+transit( argent_tower, vega_technical_department).
+transit( argent_tower, argent_complex).
 
-transit(complex_oak, raspres_center).
-transit(complex_oak, argent_complex).
-transit(complex_oak, vega_technical_department).
+transit( vega_technical_department, raspres_center).
+transit( vega_technical_department, argent_complex).
+transit( vega_technical_department, argent_tower).
+transit( vega_technical_department, complex_oak).
 
-transit(sarcophagus, complex_oak).
+transit( argent_complex, argent_tower).
+transit( argent_complex, complex_oak ).
+transit( argent_complex, vega_technical_department).
+
+transit( complex_oak, raspres_center).
+transit( complex_oak, argent_complex).
+transit( complex_oak, vega_technical_department).
+
+transit( sarcophagus, complex_oak).
 /** 1.2. Termy złożone UP */
 
 
@@ -52,7 +58,7 @@ road(X,Y) :- transit(X,Z), road(Z,Y).
 /** 4.  Uniﬁkacja, cięcie */
 /** 5.  Listy (operacje na listach) */
 
-go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)).
+go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)), write("You are in "), write(Y), write('.').
 
 
 

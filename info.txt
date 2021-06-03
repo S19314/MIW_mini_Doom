@@ -3,4 +3,11 @@
 3 Elementy dynamiczne (dodawanie i usuwanie termów w trakcie działania programu),  +-
 4 Rekurencja, GOOD, but need to show. 
 5 Uniﬁkacja, cięcie,  (В списках??)
-6 Listy (operacje na listach). 
+6 Listy (operacje na listach).
+
+_________________________________
+plan: 
+1. Create correct go(), передвижение между комнатами.
+_____________________________________
+Cделано:
+1. Настроена ходьба.
