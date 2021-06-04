@@ -109,9 +109,17 @@ show_death :- write('     _            _   _
  / _\` |/ _ \\/ _\` | __| \'_ \\ 
 | (_| |  __/ (_| | |_| | | |
  \\__,_|\\___|\\__,_|\\__|_| |_|').
+show_game_over :- write('  __ _  __ _ _ __ ___   ___  _____   _____ _ __ 
+ / _\` |/ _\` | \'_ \` _ \\ / _ \\/ _ \\ \\ / / _ \\ \'__|
+| (_| | (_| | | | | | |  __/ (_) \\ V /  __/ |   
+ \\__, |\\__,_|_| |_| |_|\\___|\\___/ \\_/ \\___|_|   
+  __/ |                                         
+ |___/     ' ).
+
+
 
 show_killed_demon() :- write('Demon was killed!!!!!').
-who_win_fight() :- show_demon, inventory(R), (member(bfg_gun, R) ; member(armor, R)) -> show_killed_demon() ; show_death, halt .
+who_win_fight() :- show_demon, inventory(R), (member(bfg_gun, R) ; member(armor, R)) -> show_killed_demon() ; show_game_over, halt. % show_death, halt .
 
 % who_win_fight() :- show_demon, (member(bfg_gun, invetory) + member(armor, inventory)) -> show_killed_demon() ; show_death, halt .
 
