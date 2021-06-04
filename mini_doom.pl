@@ -74,23 +74,42 @@ road(X,Y) :- write('Show possible ways:\t'), transit(X,Y) ; room(X,Y).
 road(X,Y) :- transit(X,Z), road(Z,Y).
 /** 2.  Rekurencja UP */
 
+
+ show_demon :- write('
+ +-----------------------------------------------------------------------------+
+| |       |\\                                           -~ /     \\  /          |
+|~~__     | \\                                         | \\/       /\\          /|
+|    --   |  \\                                        | / \\    /    \\     /   |
+|      |~_|   \\                                   \\___|/    \\/         /      |
+|--__  |   -- |\\________________________________/~~\\~~|    /  \\     /     \\   |
+|   |~~--__  |~_|____|____|____|____|____|____|/ /  \\/|\\ /      \\/          \\/|
+|   |      |~--_|__|____|____|____|____|____|_/ /|    |/ \\    /   \\       /   |
+|___|______|__|_||____|____|____|____|____|__[]/_|----|    \\/       \\  /      |
+|  \\mmmm :   | _|___|____|____|____|____|____|___|  /\\|   /  \\      /  \\      |
+|      B :_--~~ |_|____|____|____|____|____|____|  |  |\\/      \\ /        \\   |
+|  __--P :  |  /                                /  /  | \\     /  \\          /\\|
+|~~  |   :  | /                                 ~~~   |  \\  /      \\      /   |
+|    |      |/                        .-.             |  /\\          \\  /     |
+|    |      /                        |   |            |/   \\          /\\      |
+|    |     /                        |     |            -_   \\       /    \\    |
++-----------------------------------------------------------------------------+
+|          |  /|  |   |  2  3  4  | /~~~~~\\ |       /|    |_| ....  ......... |
+|          |  ~|~ | % |           | | ~J~ | |       ~|~ % |_| ....  ......... |
+|   AMMO   |  HEALTH  |  5  6  7  |  \\===/  |    ARMOR    |#| ....  ......... |
++-----------------------------------------------------------------------------+
+' ).
+
+
 /** 3.  Elementy dynamiczne  add and remove */
 go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)), write("You are in "), write(Y), write('.').
 % Добавить отображение комнаты.
 
 the_end :- write('Congratulations you finished the game!'), nl, game_title.
-%is_not_end :- write('You should find a red key-card or bey near the exit to the Mars surface. ').
 
 info_have_no_key :- write('You should find a red key-card.').
 info_not_near_exit() :- write('You aren\'t near the '), room(exit_to_mars, X), write(X), write('. You are near '), whereami(Y), write(Y), write('.').
 
 go_surface_mars() :- whereami(X), X == exit_to_mars -> (member(red_key, inventory) -> the_end ; info_have_no_key) ; info_not_near_exit().
-
-/**
-
-go_surface_mars(X, Y) :- whereami(X), X == exit_to_mars -> (member(red_key, inventory) -> the_end ; info_have_no_key) ; info_not_near_exit(X, Y).
-*/
-% go_surface_mars :- whereami(X), X == exit_to_mars -> member(red_key, inventory(C)) -> the_end ; is_not_end .
 
 
 
