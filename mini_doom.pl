@@ -119,7 +119,10 @@ show_death :- write('     _            _   _
  \\__,_|\\___|\\__,_|\\__|_| |_|').
 
 show_killed_demon() :- write('Demon was killed!!!!!').
- who_win_fight() :- show_demon, (member(bfg_gun, invetory) + member(armor, inventory)) -> show_killed_demon() ; show_death, halt .
+who_win_fight() :- show_demon, (member(bfg_gun, inventory) ; member(armor, inventory)) -> show_killed_demon() ; show_death, halt .
+
+% who_win_fight() :- show_demon, (member(bfg_gun, invetory) + member(armor, inventory)) -> show_killed_demon() ; show_death, halt .
+
 % Где-то тут ошибка.
 
 /** 3.  Elementy dynamiczne  add and remove */
@@ -154,6 +157,6 @@ my_help :-
 2. For showing your current location: whereami(X).\n3.For showing nearest rooms: road(location_from, Y).
 4. For going to nearest_room: go(nearest_room).\n5.For showing doomguy inventory: show_inventory.
 6. When you will be near the Exit to the surface of Marce and if you wish to finish the game: go_surface_mars().
-7. Looking for new items in room: check().
+7. Looking for new items in room: check().\n8. For putting item from room to your inventory: put_item_inv().
 '), fail.
  
