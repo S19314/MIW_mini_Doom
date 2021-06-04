@@ -59,7 +59,7 @@ transit( complex_oak, vega_technical_department).
 
 transit( sarcophagus, complex_oak).
 /** 1.2. Termy złożone UP */
-/**
+/** 
 transit( B, A) = transit( argent_tower, vega_technical_department).
 */ 
 
@@ -99,12 +99,23 @@ road(X,Y) :- transit(X,Z), road(Z,Y).
 +-----------------------------------------------------------------------------+
 ' ).
 
+show_death :- write('     _            _   _     
+    | |          | | | |    
+  __| | ___  __ _| |_| |__  
+ / _\` |/ _ \\/ _\` | __| \'_ \\ 
+| (_| |  __/ (_| | |_| | | |
+ \\__,_|\\___|\\__,_|\\__|_| |_|').
+
+show_killed_demon() :- write('Demon was killed!!!!!').
+ who_win_fight() :- show_demon, (member(bfg_gun, invetory) + member(armor, inventory)) -> show_killed_demon() ; show_death, halt .
+% Где-то тут ошибка.
 
 /** 3.  Elementy dynamiczne  add and remove */
-go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)), write("You are in "), write(Y), write('.').
-% Добавить отображение комнаты.
+go(Y) :- whereami(X), transit(X,Y), retractall(whereami(_)), assert(whereami(Y)), write("You are in "), write(Y), write('.'), 
+whereami(Z), Z == raspres_center -> who_win_fight() ; write('').
 
-the_end :- write('Congratulations you finished the game!'), nl, game_title.
+% Добавить отображение комнаты.
+the_end :- write('Congratulations you finished the game!'), nl, game_title, halt.
 
 info_have_no_key :- write('You should find a red key-card.').
 info_not_near_exit() :- write('You aren\'t near the '), room(exit_to_mars, X), write(X), write('. You are near '), whereami(Y), write(Y), write('.').
