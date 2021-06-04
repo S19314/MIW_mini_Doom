@@ -1,13 +1,5 @@
 /** 3.  Elementy dynamiczne  */
 :- dynamic whereami/1.
-% Мб, убрать?
-:- dynamic health_state/1.
-healt_state(['I am alive!']).
-show_list_healt_state([Head|Tail]) :- write(Head), nl, show_list(Tail).
-show_healt_state :- healt_state(X), show_list_healt_state(X).
-add_healt_state(Y) :- healt_state(X), append(X, [Y], Z), retractall(healt_state(_)), assert(healt_state(Z)), write(Z).
-add_healt_state(Y) :- healt_state(X), delete(X, [Y], Z), retractall(healt_state(_)), assert(healt_state(Z)), write(Z).
-
 
 /** 5.  Listy (operacje na listach) */
 :- dynamic inventory/1.
@@ -119,7 +111,7 @@ show_death :- write('     _            _   _
  \\__,_|\\___|\\__,_|\\__|_| |_|').
 
 show_killed_demon() :- write('Demon was killed!!!!!').
-who_win_fight() :- show_demon, (member(bfg_gun, inventory) ; member(armor, inventory)) -> show_killed_demon() ; show_death, halt .
+who_win_fight() :- show_demon, inventory(R), (member(bfg_gun, R) ; member(armor, R)) -> show_killed_demon() ; show_death, halt .
 
 % who_win_fight() :- show_demon, (member(bfg_gun, invetory) + member(armor, inventory)) -> show_killed_demon() ; show_death, halt .
 
@@ -135,7 +127,9 @@ the_end :- write('Congratulations you finished the game!'), nl, game_title, halt
 info_have_no_key :- write('You should find a red key-card.').
 info_not_near_exit() :- write('You aren\'t near the '), room(exit_to_mars, X), write(X), write('. You are near '), whereami(Y), write(Y), write('.').
 
-go_surface_mars() :- whereami(X), X == exit_to_mars -> (member(red_key, inventory) -> the_end ; info_have_no_key) ; info_not_near_exit().
+go_surface_mars() :- whereami(X), X == exit_to_mars -> inventory(R), (member(red_key, R) -> the_end ; info_have_no_key) ; info_not_near_exit().
+% go_surface_mars() :- whereami(X), X == exit_to_mars -> (member(red_key, inventory) -> the_end ; info_have_no_key) ; info_not_near_exit().
+
 
 
 
