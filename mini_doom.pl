@@ -42,7 +42,7 @@ item_in_room(vega_technical_department, bfg_gun).
 
 check() :- whereami(X), item_in_room(X, Y), item(Y,Z), write(Z).
 % check() :- whereami(X), item_in_room(X, Y), write(Y). % item(Y,Z), write(Z).
-
+put_item_inv() :- whereami(X), item_in_room(X,Y), add_inventory(Y). % inv -> inventory
 
 
 transit( exit_to_mars, raspres_center).
@@ -150,9 +150,10 @@ game_title :- write('
 
 
 my_help :- 
-	write('For showing game: game_title.
-For showing your current location: whereami(X).\nFor showing nearest rooms: road(location_from, Y).
-For going to nearest_room: go(nearest_room).\nFor showing doomguy inventory: show_inventory.
-When you will be near the Exit to the surface of Marce and if you wish to finish the game: go_surface_mars().
+	write('1. For showing name of game : game_title.
+2. For showing your current location: whereami(X).\n3.For showing nearest rooms: road(location_from, Y).
+4. For going to nearest_room: go(nearest_room).\n5.For showing doomguy inventory: show_inventory.
+6. When you will be near the Exit to the surface of Marce and if you wish to finish the game: go_surface_mars().
+7. Looking for new items in room: check().
 '), fail.
  
