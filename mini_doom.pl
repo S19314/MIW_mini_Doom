@@ -32,6 +32,18 @@ room(vega_technical_department, 'Vega Technical Department').
 /** 1.2. Termy złożone DOWN */
 key(red_key, 'hand with Red key card').
 
+item(bfg_gun, 'BFG-9000').
+item(armor, 'Armor').
+item(red_key, 'hand with Red key card').
+
+item_in_room(argent_complex, red_key).
+item_in_room(argent_tower, armor).
+item_in_room(vega_technical_department, bfg_gun).
+
+check() :- whereami(X), item_in_room(X, Y), item(Y,Z), write(Z).
+% check() :- whereami(X), item_in_room(X, Y), write(Y). % item(Y,Z), write(Z).
+
+
 
 transit( exit_to_mars, raspres_center).
 
