@@ -82,9 +82,14 @@ the_end :- write('Congratulations you finished the game!'), nl, game_title.
 %is_not_end :- write('You should find a red key-card or bey near the exit to the Mars surface. ').
 
 info_have_no_key :- write('You should find a red key-card.').
-info_not_near_exit(X, Y) :- write('You aren\'t near the '), room(exit_to_mars, X), write(X), write('. You are near '), whereami(Y),write(Y).
-go_surface_mars(X, Y) :- whereami(X), X == exit_to_mars -> (member(red_key, inventory) -> the_end ; info_have_no_key) ; info_not_near_exit(X, Y).
+info_not_near_exit() :- write('You aren\'t near the '), room(exit_to_mars, X), write(X), write('. You are near '), whereami(Y), write(Y), write('.').
 
+go_surface_mars() :- whereami(X), X == exit_to_mars -> (member(red_key, inventory) -> the_end ; info_have_no_key) ; info_not_near_exit().
+
+/**
+
+go_surface_mars(X, Y) :- whereami(X), X == exit_to_mars -> (member(red_key, inventory) -> the_end ; info_have_no_key) ; info_not_near_exit(X, Y).
+*/
 % go_surface_mars :- whereami(X), X == exit_to_mars -> member(red_key, inventory(C)) -> the_end ; is_not_end .
 
 
@@ -106,6 +111,6 @@ my_help :-
 	write('For showing game: game_title.
 For showing your current location: whereami(X).\nFor showing nearest rooms: road(location_from, Y).
 For going to nearest_room: go(nearest_room).\nFor showing doomguy inventory: show_inventory.
-When you will be near the Exit to the surface of Marce and if you wish to finish the game: go_surface_mars.
+When you will be near the Exit to the surface of Marce and if you wish to finish the game: go_surface_mars().
 '), fail.
  
